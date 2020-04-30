@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+   <title> TicTacToe C++ Code </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="Keywords" content="HTML,CSS,JavaScript,SQL,PHP,jQuery,XML,DOM,Bootstrap">
+    <meta name="Description" content="Well organized and easy to understand Web building... ">
+    
+    <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--- --------   -------   --> 
+    
+    <style>
+       
+      /*  ---- Scroll bar  --- */
+       /* width */
+      ::-webkit-scrollbar {
+        width: 10px;
+            } 
+       /* Track */
+        ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 -10px rgb(0, 0, 0); 
+        background-color: black;
+        border-radius: 0px;
+        }
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+         background: rgb(255, 255, 255); 
+         border-radius: 20px;
+            }
+
+           /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+       background: rgba(255, 255, 255, 0.959); 
+         }
+
+      /* ----------------------- */
+
+       /* large devices ( laptops ) */
+       #logoNavBar{
+        width: 100%;
+        height: 90px;
+        background-color: rgb(0, 0, 0);
+       /* border-bottom: 1px solid rgba(0, 0, 0, 0.562); */
+       border: 1px solid rgb(0, 0, 0);
+        box-shadow: 0px 5px 20px -5px rgba(49, 49, 49, 0.644) ;
+        -webkit-box-shadow: 0px 5px 20px -5px rgba(49, 49, 49, 0.644) ;
+        -moz-box-shadow: 0px 5px 20px -5px rgba(49, 49, 49, 0.644) ;
+        z-index: 1;
+        position: fixed;
+        top: 0px;
+          
+       }
+
+      #logo{
+        width:300px;
+        position: relative;
+        left: 40px;
+        top: 12px;
+      filter: invert(100%);
+      }
+
+
+      #firstContentDiv{
+       /* position: relative;
+        top:170px; */
+        margin-top: 150px;
+        border:0px solid rgba(255, 255, 255, 0.959);
+       /* background-color: rgb(255, 255, 255,0.959);*/
+       background : linear-gradient(rgb(252, 164, 0) , rgb(255, 129, 79) ); 
+      }
+      #secondContentDiv{
+       /*margin-top: 250px;*/
+       border: 0px solid rgb(255, 255, 255, 0.959); 
+       background-color: rgb(10, 10, 10);
+
+      }
+
+      #thirdContentDiv{
+       /*margin-top: 250px;*/
+       border: 0px solid rgb(255, 255, 255, 0.959); 
+       background-color: rgba(255, 254, 254, 0.959);
+      }
+
+      .contentCards{
+        width: 900px;
+        height:fit-content;
+        margin:0px auto;
+        margin-top: 80px;
+        padding: 10px 25px;
+        word-wrap: break-word;
+        border-radius: 20px;
+        box-shadow: 0px 15px 20px 5px rgba(44, 44, 44, 0.699);
+        -webkit-box-shadow: 0px 15px 20px 5px rgba(44, 44, 44, 0.699);
+        -moz-box-shadow: 0px 15px 20px 5px rgba(44, 44, 44, 0.699);
+        
+      }
+      .contentCards h1 {
+        text-align: center; 
+      }
+       .contentCards hr{
+        width: 100%;
+       border: 1% solid rgb(172, 171, 171);
+       
+      }
+
+      .contStyle{
+       /* border:  1px solid black; */
+        margin: 50px auto;
+        width:75%;
+              }
+      .contRowStyle{
+        padding-bottom: 3px;
+        }
+      .contColStyle{
+       /* border: 1px solid black; 
+        background-color: rgb(7, 7, 7); */
+        text-align: center;
+         padding-right: 0%; 
+      }
+       .hoverLink{
+         color: black; 
+         background-color: black;
+         text-decoration:none;
+       }
+
+       .hoverLink :hover{
+         color: rgb(255, 255, 255);
+       }
+       .rowStyle{
+       background-color: rgb(255, 255, 255);
+         margin-right: 4%;
+          margin-left: 0.1%;
+           margin-top: 1%;
+            margin-bottom: 1%;
+             border-radius: 15px;
+              border:2px solid rgb(2, 2, 2);
+            
+       }
+
+      .rowStyle :hover{
+        background-color: rgb(0, 0, 0);
+          transition: background-color 0.2s ease-out;
+
+      }
+
+       .colStyle{
+        padding-left: 0%;
+         padding-right: 0%;
+         border-top-left-radius: 15px;
+         border-bottom-left-radius: 15px;
+        /*  border: 1px solid green; */  
+                 }
+
+
+      .linkImgStyle{
+        height: 90px;
+        width: 100%;
+        border-top-left-radius: 14px;
+        border-bottom-left-radius: 14px;
+      }
+      .linkParaStyle{
+        margin: 4% auto; 
+        word-wrap: break-word;
+      }
+      .linkParaDivStyle{
+       background-color: transparent;
+      }
+ 
+      .finalCont{
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        border : 1px solid rgb(8, 8, 8);
+        background-color: rgb(22, 19, 19);
+        box-shadow: 0px -5px 20px 5px rgba(49, 49, 49, 0.644) ;
+        -webkit-box-shadow: 0px -5px 20px 5px rgba(49, 49, 49, 0.644) ;
+        -moz-box-shadow: 0px -5px 20px 5px rgba(49, 49, 49, 0.644) ;
+        }
+      
+      .yLink{
+         text-align: right;
+      }
+      .mail{
+        position: absolute;
+        right:10px;
+        color: rgb(110, 110, 110);
+      }
+      .mMail{
+        display: none;
+        color: rgb(110, 110, 110);
+
+      }
+      .CR{
+        position: absolute;
+        right:50%;
+        color: rgb(110, 110, 110);
+      }
+      .subhdr{
+        text-decoration: none; 
+        font-weight: bold
+      }
+
+    .hdrLink{
+      font-size:x-large; 
+      font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+
+
+
+
+
+     /* -----------------------------------------------------------------------*/
+
+
+      /* Extra small devices (phones, 600px and down) */
+      @media only screen and (max-width: 450px) {
+      
+        #logoNavBar{
+        height: 70px;
+       }
+
+      #logo{
+        width:200px;
+        left: 10px;
+      }
+
+      .contentCards{
+        
+        width: 90vw;
+      }
+
+      .mobileClass{
+        width: 98%;
+        display:inline-block
+      }
+      .contStyle{
+        width: 90%;
+      }
+      .linkImgStyle{
+        height: 60px;
+      }
+
+      .yLink{
+        text-align: center;
+      }
+      .mail{
+        display: none;
+      }
+      .mMail{
+        display: block;
+        text-align: center;
+      } 
+    
+      .CR{
+        display: none;
+      }
+
+      #firstContentDiv{
+        font-size: 75%;
+      }
+
+      #secondContentDiv{
+        font-size: 75%;
+      }
+
+      #thirdContentDiv{
+        font-size: 75%;
+      }
+      .hdr{
+        font-size: 200%;
+        font-weight: bold;
+
+      }
+      .subhdr{
+        font-size: 200%;
+        font-weight: normal;
+      }
+
+      .hdrLink{
+        font-size: larger;
+      }
+      
+     }
+
+
+     /* -----------------------------------------------------------------------*/
+
+    /* Small devices (portrait tablets and large phones, 600px and up) */
+    @media only screen and (min-width: 449px) and (max-width: 768px ) {
+
+      #logoNavBar{
+        background-color: black;
+       }
+
+      #logo{
+        left: 20px;
+      }
+      .contentCards{
+        
+        width: 90vw;
+      }
+      .contStyle{
+        width: 90%;
+        
+      }
+      .linkImgStyle{
+        height: 70px;
+      }
+      
+      .yLink{
+        text-align: center;
+      }
+      .mail{
+        display: none;
+      }
+      .mMail{
+        display: block;
+        text-align: center;
+      }
+      .CR{
+        display: none;
+      }
+      
+      #firstContentDiv{
+        font-size: 75%;
+      }
+
+      #secondContentDiv{
+        font-size: 75%;
+      }
+
+      #thirdContentDiv{
+        font-size: 75%;
+      }
+
+      .hdr{
+        font-size: 200%;
+        font-weight: bold;
+
+      }
+      .subhdr{
+        font-size: 200%;
+        font-weight: normal;
+      }
+
+      .hdrLink{
+        font-size:x-large;
+      }
+
+    }
+  /* ------------------------------------------------------------- */
+
+    </style>
+
+
+    <!------------------------------------------------------------------>
+    <scripts>
+
+
+
+    </scripts>
+
+  </head>  
+  
+  <body>
+    
+    <div id="logoNavBar" >
+      
+       <img id="logo"alt="General Scripts" src="GeneralScripts.png" > 
+      
+      
+    </div>
+
+    <div class="contentCards container"  id="firstContentDiv" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+
+        <h1 class="hdr"> Tic Tac Toe Using C++ </h1>
+        <hr>
+
+        <p><img class="mobileClass" alt="output" src="0.png" width="100%" style="border-radius: 5px; margin: 0px 0px;"></p>
+        <p></p>
+        
+
+        <h3 class="subhdr"> Why refer This Code: </h3>
+        <ul>
+          <li>Code Length is very small compared to other codes</li>
+          <p></p>
+
+          <li>Easy to understand as there are no complex syntax/keywords involved</li>
+          <p></p>
+
+          <li>Simple game logic has been adapted</li>
+          <p></p>
+
+          <li>Great output design and interactive behaviour</li>
+          <p></p>
+
+        </ul>
+       
+
+    </div>
+
+    <div class="contentCards container"  id="secondContentDiv" style="font-family:sans-serif;"> 
+
+      <h1 class="hdr" style="color: azure;"> C++  CODE </h1>
+       <hr color="#bebebe">
+       <textarea rows="178" style="background-color: rgb(10, 10, 10);color: white; border: 2px solid black; border-radius: 5px; width:100%; height:100%">
+        /*
+        ██  ██ ████████ ██  ██████     ████████  █████   ██████     ████████  ██████  ███████
+       ██  ██     ██    ██ ██             ██    ██   ██ ██             ██    ██    ██ ██
+      ██  ██      ██    ██ ██             ██    ███████ ██             ██    ██    ██ █████
+     ██  ██       ██    ██ ██             ██    ██   ██ ██             ██    ██    ██ ██
+    ██  ██        ██    ██  ██████        ██    ██   ██  ██████        ██     ██████  ███████
+    */
+    
+    // Author : D4RK-C0D3R
+    
+    #include <iostream>
+    using namespace std;
+    
+    char board[] = {'1','2','3','4', '5','6','7','8','9'};
+    char s[] = {'1','2','3','4', '5','6','7','8','9'};
+    char player,a,b;
+    int count = 0;
+    
+    // Changing the player
+    TogglePlayer(char c,char d){
+      if(player == c)
+        player = d;
+      else
+        player = c;
+    
+      return 0;
+    }
+    
+    // Drawing tic tac toe
+    void Draw(){
+      cout << endl;
+      cout << "######## ##  ######     ########  #####   ######     ########  ######  ####### " << endl;
+      cout << "   ##    ## ##             ##    ##   ## ##             ##    ##    ## ##      " << endl;
+      cout << "   ##    ## ##             ##    ####### ##             ##    ##    ## ####### " << endl;
+      cout << "   ##    ## ##             ##    ##   ## ##             ##    ##    ## ##      " << endl;
+      cout << "   ##    ##  ######        ##    ##   ##  ######        ##     ######  ####### " << endl;
+      cout << endl;
+      cout << " | " << board[0] << " | " << board[1] << " | " << board[2] << " | " << endl;
+      cout << " ------------- " << endl;
+      cout << " | " << board[3] << " | " << board[4] << " | " << board[5] << " | " << endl;
+      cout << " ------------- " << endl;
+      cout << " | " << board[6] << " | " << board[7] << " | " << board[8] << " | " << endl;
+      cout << endl;
+    }
+    
+    // get input from player
+    void input(){
+      int a;
+      cout << "Choose the number field " << player << ": ";
+      cin >> a;
+      count += 1;
+      if (a == 1)
+        board[0] = player;
+      else if (a == 2)
+        board[1] = player;
+      else if (a == 3)
+        board[2] = player;
+      else if (a == 4)
+        board[3] = player;
+      else if (a == 5)
+        board[4] = player;
+      else if (a == 6)
+        board[5] = player;
+      else if (a == 7)
+        board[6] = player;
+      else if (a == 8)
+        board[7] = player;
+      else if (a == 9)
+        board[8] = player;
+    }
+    
+    // check if player is win algorithm
+    char check(){
+      if (board[0] == board[1] && board[1] == board[2]){
+        return player;
+      }
+      if (board[3] == board[4] && board[4] == board[5]){
+        return player;
+      }
+      if (board[6] == board[7] && board[7] == board[8]){
+        return player;
+      }
+      if (board[0] == board[3] && board[3] == board[6]){
+        return player;
+      }
+      if (board[1] == board[4] && board[4] == board[7]){
+        return player;
+      }
+      if (board[2] == board[5] && board[5] == board[8]){
+        return player;
+      }
+      if (board[0] == board[4] && board[4] == board [8]){
+        return player;
+      }
+      if (board[2] == board[4] && board[4] == board [6]){
+        return player;
+      }
+      if(count == 9)
+        return 'd';
+    
+    return '/';
+    }
+    
+    // clear the screen
+    void clear(){
+      system("cls");
+    }
+    
+    // output winner
+    int winner(char c){
+      if(c == a ){
+        cout << c << " Wins!! ()==|:::::::::::> Game Over" << endl;
+        return 1;
+      }
+      if(c == b){
+        cout << c << " Wins!! ()==|:::::::::::> Game Over" << endl;
+        return 1;
+      }
+      if(c == 'd'){
+        cout << "Draw!! ()==|:::::::::::> Game Over" << endl;
+      return 1;
+      }
+    
+    return 0;
+    }
+    
+    // to play playagain
+    int playagain(){
+      char choice;
+      cout << endl;
+      cout << "Do you want to play again:\n";
+      cout << "Y) Yes" << "\n" << "N) No" << endl;
+      cout << "Choose: ";
+      cin >> choice;
+      if(choice == 'Y' || choice == 'y' || choice == '1')
+        return 1;
+      if(choice == 'N' || choice == 'n' || choice == '2')
+        return 2;
+    return 0;
+    }
+    
+    // Main function
+    int main(){
+      int d = 1;
+      int x = 0;
+      clear();
+      Draw();
+      cout << "Enter Player one's character: ";
+      cin >> a;
+      cout << "Enter Player two's character: ";
+      cin >> b;
+        while(x != 1){
+          clear();
+          Draw();
+          TogglePlayer(a,b);
+          input();
+          char test = check();
+          clear();
+          Draw();
+          x = winner(test);
+      }
+      if(x == 1){
+        d = playagain();
+        if(d == 1){
+          x = 0;
+          count = 0;
+          d = 0;
+          for(int i=0;i<10;i++)
+          board[i] = s[i];
+          main();
+        }
+        else if( d == 2)
+          exit(0);
+      }
+    }
+  </textarea>
+      
+    </div>
+
+
+    <div class="contentCards container"  id="thirdContentDiv" style="font-family:sans-serif;">
+
+      <h1 class="hdr"> Output </h1>
+       <hr  >
+      <p></p>
+      <p><img class="mobileClass" alt="output" src="1.png" width="100%" style="border-radius: 5px;"></p>
+      <p></p>
+      <hr>
+
+      <p><img class="mobileClass" alt="output" src="2.png" width="100%" style="border-radius: 5px;"></p>
+      <p></p>
+      <hr>
+
+      <p><img class="mobileClass" alt="output" src="3.png" width="100%" style="border-radius: 5px;"></p>
+      <p></p>
+      <hr>
+
+      <p><img class="mobileClass" alt="output" src="4.png" width="100%" style="border-radius: 5px;"></p>
+      <p></p>
+      <hr>
+
+      <p><img class="mobileClass" alt="output" src="5.png" width="100%" style="border-radius: 5px;"></p>
+      <p></p>
+
+
+    </div>
+
+    <hr style="margin: 50px auto; width: 90%;">
+
+ <!--   ---    LINKS   ---   -----
+   <div class="container-fluid contStyle">
+      <div class="row contRowStyle">
+        <div class="col-lg-6 contColStyle" >
+              
+          <a class="hoverLink" href="demo.html" style="text-decoration:none;" target="_blank" >
+            <div class="row rowStyle" >
+              <div class="col-4 colStyle" >
+                 <img class="linkImgStyle" src="first slide.png" > 
+               </div>
+               <div class="col-8" >
+                  <p class="linkParaStyle">this is a</p>
+              </div>
+             </div>
+           </a> 
+    </div>
+        
+        <div class="col-lg-6 contColStyle" >
+              
+          <a class="hoverLink" href="demo.html" style="text-decoration:none;" target="_blank" >
+             <div class="row rowStyle" >
+               <div class="col-4 colStyle" >
+                 <img class="linkImgStyle" src="first slide.png" > 
+               </div>
+               <div class="col-8" >
+                <p class="linkParaStyle">this is</p>
+              </div>
+             </div>
+           </a> 
+    </div>
+
+      </div>
+
+      <div class="row contRowStyle">
+        <div class="col-lg-6 contColStyle">
+              
+          <a class="hoverLink" href="demo.html" style="text-decoration:none;" target="_blank" >
+            <div class="row rowStyle" >
+              <div class="col-4 colStyle" >
+                 <img class="linkImgStyle" src="first slide.png" > 
+               </div>
+               <div class="col-8" >
+                <p class="linkParaStyle">this is</p>
+              </div>
+             </div>
+           </a> 
+    </div>
+        
+        <div class="col-lg-6 contColStyle" >
+              
+          <a class="hoverLink" href="demo.html" style="text-decoration:none;" target="_blank" >
+             <div class="row rowStyle" >
+               <div class="col-4 colStyle">
+                 <img class="linkImgStyle" src="first slide.png"> 
+               </div>
+               <div class="col-8" >
+                <p class="linkParaStyle">this is</p>
+              </div>
+             </div>
+           </a> 
+    </div>
+
+      </div>
+
+      <div class="row contRowStyle">
+        <div class="col-lg-6 contColStyle" >
+              
+          <a class="hoverLink" href="demo.html" style="text-decoration:none;" target="_blank" >
+            <div class="row rowStyle" >
+              <div class="col-4 colStyle" >
+                 <img class="linkImgStyle" src="first slide.png" > 
+               </div>
+               <div class="col-8" >
+                <p class="linkParaStyle">this is</p>
+              </div>
+             </div>
+           </a> 
+    </div>
+        
+        <div class="col-lg-6 contColStyle" >
+              
+          <a class="hoverLink" href="demo.html" style="text-decoration:none;" target="_blank" >
+             <div class="row rowStyle" >
+               <div class="col-4 colStyle" >
+                 <img class="linkImgStyle" src="first slide.png" > 
+               </div>
+               <div class="col-8" >
+                <p class="linkParaStyle">this is</p>
+              </div>
+             </div>
+           </a> 
+    </div>
+
+      </div>
+
+
+   </div>
+    ---    LINKS   ---   ----->
+
+ <div class="container-fluid finalCont">
+  <p class="yLink">youtube link </p>
+  <p class="mMail">generalscriptsgs@gmail.com</p>
+  <p class="mMail">© Some Rights Reserved </p>
+  <img alt="General Scripts" src="GeneralScripts.png" width="200px" style="filter: invert(100%);" > 
+  <span class="CR"> © Some Rights Reserved</span>
+  <span class="mail"> generalscriptsgs@gmail.com</span>
+
+</div>
+    
+
+    
+    
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery ( 3.2.1 ) first, then Popper.js ( 1.12.9 ), then Bootstrap JS ( 4.0.0 ) -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  </body>
+
+
+</html>  
