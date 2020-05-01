@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en-US" style="height: 100%;">
+  <head>
+   <title> Number Game </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="Keywords" content="Games,Website,Number,Simple">
+    <meta name="Description" content="Well organized and easy to understand Web building... ">
+    
+    <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--- --------   -------   --> 
+    
+    <style>
+       
+      /*  ---- Scroll bar  --- */
+       /* width */
+       ::-webkit-scrollbar {
+        width: 10px;
+            } 
+      ::-moz-scrollbar {
+        width: 10px;
+            } 
+       /* Track */
+        ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 -10px rgb(0, 0, 0); 
+        background-color: black;
+        border-radius: 0px;
+        }
+        
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+         background: rgb(255, 255, 255); 
+         border-radius: 20px;
+            }
+
+           /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+       background: rgba(255, 255, 255, 0.959); 
+         }
+
+      /* ----------------------- */
+
+       /* large devices ( laptops ) */
+       #logoNavBar{
+        width: 100%;
+        height: 90px;
+        background-color: rgb(0, 0, 0);
+       /* border-bottom: 1px solid rgba(0, 0, 0, 0.562); */
+       border: 1px solid rgb(0, 0, 0);
+        box-shadow: 0px 5px 20px -5px rgba(49, 49, 49, 0.644) ;
+        -webkit-box-shadow: 0px 5px 20px -5px rgba(49, 49, 49, 0.644) ;
+        -moz-box-shadow: 0px 5px 20px -5px rgba(49, 49, 49, 0.644) ;
+        z-index: 1;
+        position: fixed;
+        top: 0px;
+          
+       }
+
+      #logo{
+        width:300px;
+        position: relative;
+        left: 40px;
+        top: 12px;
+        filter: invert(100%);
+      }
+
+      #borderBox{
+        position: relative;
+        top: 90px;
+        border: 0px solid brown ;    
+        height: 880px;
+        
+      }
+
+
+
+   
+ 
+      .finalCont{
+        margin-top: 90px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        border : 1px solid rgb(8, 8, 8);
+        background-color: rgb(22, 19, 19);
+        box-shadow: 0px -5px 20px 5px rgba(49, 49, 49, 0.644) ;
+        -webkit-box-shadow: 0px -5px 20px 5px rgba(49, 49, 49, 0.644) ;
+        -moz-box-shadow: 0px -5px 20px 5px rgba(49, 49, 49, 0.644) ;
+        }
+      
+      .yLink{
+         text-align: right;
+      }
+      .mail{
+        position: absolute;
+        right:10px;
+        color: rgb(110, 110, 110);
+      }
+      .mMail{
+        display: none;
+        color: rgb(110, 110, 110);
+
+      }
+      .CR{
+        position: absolute;
+        right:50%;
+        color: rgb(110, 110, 110);
+      }
+
+      .box1{
+        border: 0px solid green;
+        position: absolute;
+        top: 25%;
+        width: 50%;
+        margin: 0 25%;
+      }
+      .box2{
+        border: 0px solid red;
+        padding: 5px 0;
+      }
+      .box3{
+        border: 0px solid blue;
+        padding: 5px 0;
+
+      }
+      .boxL{
+        border: 0px solid pink;
+        background-color: rgb(0, 0, 0);
+        height: 100px;
+        width: 100px;
+        margin: 0 auto;
+        border-radius: 10px;
+      }
+      .boxL :hover{
+        background-color: white;
+        border: 5px solid black;
+        border-radius: 10px;
+      }
+      .boxL p{
+        color: white;
+        font-size: 60px;
+        text-align: center;
+      }
+      .boxL p:hover{
+        color: black;
+      }
+
+      #answer{
+        color: white;
+        font-size: 60px;
+        text-align: center;
+      }
+
+
+
+
+
+
+     /* -----------------------------------------------------------------------*/
+
+
+      /* Extra small devices (phones, 600px and down) */
+      @media only screen and (max-width: 450px) {
+      
+        #logoNavBar{
+        height: 90px;
+       }
+
+      #logo{
+        width:200px;
+        left: 10px;
+      }
+
+      .yLink{
+        text-align: center;
+      }
+      .mail{
+        display: none;
+      }
+      .mMail{
+        display: block;
+        text-align: center;
+      } 
+    
+      .CR{
+        display: none;
+      }
+      .box1{
+        width: 70%;
+        margin: 0  15%;
+      }
+      #answer{
+        font-size: 30px;
+      }
+      
+     }
+
+
+     /* -----------------------------------------------------------------------*/
+
+    /* Small devices (portrait tablets and large phones, 600px and up) */
+    @media only screen and (min-width: 449px) and (max-width: 768px ) {
+
+     /* #logoNavBar{
+      
+       } */
+
+      #logo{
+        left: 20px;
+      }
+      
+      .yLink{
+        text-align: center;
+      }
+      .mail{
+        display: none;
+      }
+      .mMail{
+        display: block;
+        text-align: center;
+      }
+      .CR{
+        display: none;
+      }
+
+    }
+  /* ------------------------------------------------------------- */
+
+    </style>
+
+
+    <!------------------------------------------------------------------>
+
+
+  </head>  
+  
+  <body style="height: 100%;">
+    
+    <div id="logoNavBar" >    
+       <img id="logo"alt="General Scripts" src="GeneralScripts.png" > 
+    </div>
+
+
+<div id="borderBox" class="conatiner">
+     
+  
+  <div class="container box1">
+     <div class="row" style="margin-bottom: 5px;">
+       <div class="col-12" style="background-color: black; height: 100px; border-radius: 10px;">
+         <p id="answer">Click on a Number</p>
+       </div>
+     </div>
+      <div class="row box2">
+          <div class="col-6 box3">
+              <div class="boxL">
+                  <p id="1" onclick="myfunction(1)"> 1 </p>
+              </div>
+          </div>
+          <div class="col-6 box3">
+              <div class="boxL">
+                <p id="2" onclick="myfunction(2)"> 2 </p>
+
+              </div>
+          </div>
+      </div>
+
+      <div class="row box2">
+        <div class="col-6 box3">
+            <div class="boxL">
+                <p id="3" onclick="myfunction(3)"> 3 </p>
+            </div>
+        </div>
+        <div class="col-6 box3">
+            <div class="boxL">
+              <p id="4" onclick="myfunction(4)"> 4 </p>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row box2">
+      <div class="col-6 box3">
+          <div class="boxL">
+              <p id="5" onclick="myfunction(5)"> 5 </p>
+          </div>
+      </div>
+      <div class="col-6 box3">
+          <div class="boxL">
+            <p id="6" onclick="myfunction(6)"> 6 </p>
+
+          </div>
+      </div>
+  </div>
+  </div>
+
+</div>
+
+<div class="container-fluid finalCont">
+  <p class="yLink">youtube link </p>
+  <p class="mMail">generalscriptsgs@gmail.com</p>
+  <p class="mMail">© Some Rights Reserved </p>
+  <img alt="General Scripts" src="GeneralScripts.png" width="200px" style="filter: invert(100%);" > 
+  <span class="CR"> © Some Rights Reserved</span>
+  <span class="mail"> generalscriptsgs@gmail.com</span>
+</div>
+
+<script>
+  var sWidth = window.innerWidth;
+  var sHeight = window.innerHeight;
+  sWidth-=90;
+  //document.getElementById("borderBox").style.height=sHeight+"px"; 
+  function myfunction(x){
+    if(sWidth>=449){
+  document.getElementById("answer").innerHTML="Your Answer is : "+x;
+  }
+  else{
+    document.getElementById("answer").style.marginTop="5%";
+    document.getElementById("answer").innerHTML="Your Answer is : "+x;
+  }
+  }
+ </script>
+
+
+
+    
+
+    
+    
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery ( 3.2.1 ) first, then Popper.js ( 1.12.9 ), then Bootstrap JS ( 4.0.0 ) -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  </body>
+
+
+</html>  
